@@ -1,34 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-import numpy
-import json_tricks
-import os
-
-numpy.random.seed(42)
-
-debug_cases = []
-for index in range(20):
-    N = numpy.random.randint(1, 20, size=[1])[0]
-    debug_cases.append({'N': N})
-
-os.makedirs('testcases', exist_ok=True)
-with open('testcases/debug_cases.json', 'w+') as fin:
-    fin.write(json_tricks.dumps(debug_cases))
-
-public_cases = []
-for index in range(20):
-    N = numpy.random.randint(1, 20, size=[1])[0]
-    public_cases.append({'N': N})
-
-with open('testcases/public_cases.json', 'w+') as fin:
-    fin.write(json_tricks.dumps(public_cases))
-
-
-# In[2]:
+# In[19]:
 
 
 get_ipython().run_line_magic('reload_ext', 'autoreload')
@@ -56,19 +29,19 @@ public_cases = json_tricks.load(
     str(path / 'testcases' / 'public_cases.json'))
 
 
-# In[3]:
+# In[20]:
 
 
 import numpy as np
 
 def inversion(N):
-    res = np.zeros([N, N])
-    for index in range(N):
-        res[index, N-index-1] = 1
-    return res
+    flip = np.zeros((N, N))
+    for i in range(N):
+        flip[i][N-1-i] = 1
+    return flip
 
 
-# In[4]:
+# In[21]:
 
 
 import time

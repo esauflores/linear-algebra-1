@@ -43,15 +43,24 @@ public_cases = json_tricks.load(str(path / 'testcases' / 'public_cases.json'))
 
 import numpy as np
 
+
+def project(v, u):
+    return np.dot(v, u) * u
+
+
 def orthonormalisation(vecs):
-    res = []
-    for vec in vecs:
-        for other in res:
-            vec = vec - (vec * other).sum() / (other * other).sum() * other
-        if np.sqrt((vec * vec).sum()) < 1.0e-4:
-            continue
-        res.append(vec / np.sqrt((vec * vec).sum()))
-    return res
+    u = []
+
+    for v in vecs:
+        t_v = v
+        for vector in u:
+            t_v = t_v - project(v, vector)
+
+        if np.linalg.norm(t_v) >= 1e-4:
+            t_v = t_v / np.linalg.norm(t_v)
+            u.append(t_v)
+
+    return u
 
 
 # In[12]:
@@ -102,7 +111,7 @@ answer = [orthonormalisation(**x) for x in public_cases]
 print(time.time() - start, '<- Elapsed time')
 
 
-# In[16]:
+# In[14]:
 
 
 json_tricks.dump(answer, 'test.json')

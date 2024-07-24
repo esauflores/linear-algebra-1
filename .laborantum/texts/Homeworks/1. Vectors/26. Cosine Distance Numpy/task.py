@@ -44,7 +44,8 @@ public_cases = json_tricks.load(str(path / 'testcases' / 'public_cases.json'))
 import numpy as np
 
 def cos(x, y):
-    return (x * y).sum() / np.sqrt(x ** 2).sum() / np.sqrt((y ** 2).sum())
+    return np.dot(x, y) / (np.linalg.norm(x) * np.linalg.norm(y))
+    return 0
 
 
 # In[8]:

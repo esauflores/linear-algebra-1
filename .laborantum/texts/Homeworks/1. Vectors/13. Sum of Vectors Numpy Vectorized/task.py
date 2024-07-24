@@ -44,7 +44,8 @@ public_cases = json_tricks.load(str(path / 'testcases' / 'public_cases.json'))
 import numpy as np
 
 def vector_sum(x, y):
-    return x + y
+    ## YOUR CODE HERE
+    return x+y
 
 
 # In[5]:

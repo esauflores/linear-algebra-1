@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[9]:
 
 
 import numpy
@@ -30,7 +30,7 @@ with open('testcases/public_cases.json', 'w+') as fin:
     fin.write(json_tricks.dumps(public_cases))
 
 
-# In[7]:
+# In[10]:
 
 
 get_ipython().run_line_magic('reload_ext', 'autoreload')
@@ -58,21 +58,20 @@ public_cases = json_tricks.load(
     str(path / 'testcases' / 'public_cases.json'))
 
 
-# In[8]:
+# In[11]:
 
 
 import numpy as np
 
 def permutation_matrix(perm):
     N = len(perm)
-    res = np.zeros([N, N])
+    perm_mat = np.array(np.zeros((N, N)))
+    for i in range(N):
+        perm_mat[i][perm[i]] = 1
+    return perm_mat
 
-    res[np.arange(N), perm] = 1
-    
-    return res
 
-
-# In[9]:
+# In[12]:
 
 
 import time
